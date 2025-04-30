@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Proyectos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+        .sidebar {
+            flex: 1 1 200px;
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .sidebar a button {
+            width: 100%;
+            padding: 0.9rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar a button:hover {
+            background-color: #0056b3;
+        }
+        .content {
+            flex: 3 1 600px;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .crud-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .crud-options a button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .crud-options a button:hover {
+            background-color: #218838;
+        }
+        .login-button {
+            margin-top: 2rem;
+        }
+        .login-button a button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .login-button a button:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+
+    <header>Gestión de Proyectos y Tareas</header>
+
+    <div class="container">
+
+        <!-- Botón lateral para crear proyecto -->
+        <div class="sidebar">
+            <a href="{% url 'crear_proyecto' %}">
+                <button>+ Crear Proyecto</button>
+            </a>
+        </div>
+
+        <!-- Botón lateral para crear tarea -->
+        <div class="sidebar">
+            <a href="{% url 'crear_tarea' %}">
+                <button>+ Crear Tarea</button>
+            </a>
+        </div>
+
+        <!-- Opciones CRUD -->
+        <div class="content">
+            <div class="crud-options">
+                <a href="{% url 'ver_proyectos' %}">
+                    <button>Ver Proyectos</button>
+                </a>
+                <a href="{% url 'ver_tareas' %}">
+                    <button>Ver Tareas</button>
+                </a>
+            </div>
+
+            <!-- Botón para ir a iniciar sesión -->
+            <div class="login-button">
+                <a href="{% url 'inicio_sesion' %}">
+                    <button>Cerrar Sesion</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

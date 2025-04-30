@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn-regresar {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .btn-regresar:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Hola {{ usuario.nombreCompleto }}</h2>
+<p>Aquí puedes ver las tareas que tienes asignadas y actualizar tus avances.</p>
+
+{% for tarea in tareas %}
+<div class="card">
+    <h3>{{ tarea.nombre }}</h3>
+    <p><strong>Proyecto:</strong> {{ tarea.proyecto.nombre }}</p>
+    <p><strong>Descripción:</strong> {{ tarea.descripcion }}</p>
+    <p><strong>Estado:</strong> {{ tarea.estado }}</p>
+    <p><strong>Fecha de inicio:</strong> {{ tarea.fecha_inicio }}</p>
+    <p><strong>Fecha de fin:</strong> {{ tarea.fecha_fin }}</p>
+    <p><strong>Avance actual:</strong> {{ tarea.avance }}</p>
+    <a href="{% url 'actualizar_avance' tarea.id %}" class="btn">Actualizar Avance</a>
+</div>
+{% empty %}
+<p>No tienes tareas asignadas actualmente.</p>
+{% endfor %}
+
+<!-- Botón Regresar -->
+<a href="{% url 'pagina_secundaria' %}" class="btn-regresar">Regresar</a>
+
+</body>
+</html>

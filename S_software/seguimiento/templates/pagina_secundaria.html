@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .panel {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #555;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+        .btn-secondary {
+            background-color: #007bff;
+        }
+        .btn-secondary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel">
+        <h2>Hola usuario</h2>
+        <p>Aquí podrás ver los proyectos que hay y las tareas que debes realizar.</p>
+
+        <a href="{% url 'ver_proyectos_usuario' %}" class="btn">Ver Proyectos</a>
+        <a href="{% url 'tareas_usuario' %}" class="btn">Ver Tareas</a>
+
+        <!-- Botón para ir a la página de inicio de sesión -->
+        <a href="{% url 'inicio_sesion' %}" class="btn btn-secondary">Ir a Inicio de Sesión</a>
+    </div>
+
+</body>
+</html>
