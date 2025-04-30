@@ -1,0 +1,101 @@
+<!-- templates/ver_tareas.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-edit {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            margin-top: 30px;
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Lista de Tareas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Proyecto</th>
+                <th>Asignado</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarea in tareas %}
+            <tr>
+                <td>{{ tarea.nombre }}</td>
+                <td>{{ tarea.proyecto.nombre }}</td>
+                <td>{% if tarea.usuario_asignado %}
+                    {{ tarea.usuario_asignado.nombreCompleto }}
+                {% else %}
+                    No asignado
+                {% endif %}
+                </td>
+                <td>{{ tarea.estado }}</td>
+                <td>
+                    <a href="{% url 'editar_tarea' tarea.id %}" class="btn btn-edit">Editar</a>
+                    <a href="{% url 'eliminar_tarea' tarea.id %}" class="btn btn-delete">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Botón de regreso -->
+    <a href="{% url 'pagina_principal' %}" class="btn-primary">Ir a la Página Principal</a>
+</div>
+
+</body>
+</html>
