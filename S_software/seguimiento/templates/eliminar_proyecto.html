@@ -1,0 +1,51 @@
+<!-- templates/confirmar_eliminar.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Eliminación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .btn-cancel {
+            background-color: grey;
+        }
+        .btn-delete {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>¿Estás seguro de que deseas eliminar el proyecto "{{ proyecto.nombre }}"?</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-delete">Eliminar</button>
+        <a href="{% url 'ver_proyectos' %}" class="btn btn-cancel">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

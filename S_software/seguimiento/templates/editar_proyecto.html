@@ -1,0 +1,66 @@
+<!-- templates/editar_proyecto.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Proyecto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn-save {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .btn-save:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Editar Proyecto</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Nombre</label>
+        <input type="text" name="nombre" value="{{ proyecto.nombre }}" required>
+
+        <label>Descripción</label>
+        <textarea name="descripcion" required>{{ proyecto.descripcion }}</textarea>
+
+        <label>Fecha Inicio</label>
+        <input type="date" name="fecha_inicio" value="{{ proyecto.fecha_inicio|date:'Y-m-d' }}" required>
+
+        <label>Fecha Fin</label>
+        <input type="date" name="fecha_fin" value="{{ proyecto.fecha_fin|date:'Y-m-d' }}" required>
+
+        <button type="submit" class="btn-save">Guardar Cambios</button>
+    </form>
+</div>
+
+</body>
+</html>

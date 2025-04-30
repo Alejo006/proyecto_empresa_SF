@@ -1,0 +1,92 @@
+<!-- templates/editar_tarea.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tarea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn-save {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .btn-save:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Editar Tarea</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Nombre</label>
+        <input type="text" name="nombre" value="{{ tarea.nombre }}" required>
+
+        <label>Descripción</label>
+        <textarea name="descripcion" required>{{ tarea.descripcion }}</textarea>
+
+        <label>Proyecto</label>
+        <select name="proyecto" required>
+            {% for proyecto in proyectos %}
+                <option value="{{ proyecto.id }}" {% if proyecto.id == tarea.proyecto.id %}selected{% endif %}>
+                    {{ proyecto.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label>Usuario Asignado</label>
+        <select name="usuario_asignado">
+            <option value="">-- No asignado --</option>
+            {% for usuario in usuarios %}
+                <option value="{{ usuario.id }}" {% if tarea.usuario_asignado and usuario.id == tarea.usuario_asignado.id %}selected{% endif %}>
+                    {{ usuario.nombreCompleto }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label>Fecha Inicio</label>
+        <input type="date" name="fecha_inicio" value="{{ tarea.fecha_inicio|date:'Y-m-d' }}" required>
+
+        <label>Fecha Fin</label>
+        <input type="date" name="fecha_fin" value="{{ tarea.fecha_fin|date:'Y-m-d' }}" required>
+
+        <label>Estado</label>
+        <select name="estado" required>
+            <option value="Pendiente" {% if tarea.estado == 'Pendiente' %}selected{% endif %}>Pendiente</option>
+            <option value="En progreso" {% if tarea.estado == 'En progreso' %}selected{% endif %}>En progreso</option>
+            <option value="Completada" {% if tarea.estado == 'Completada' %}selected{% endif %}>Completada</option>
+        </select>
+
+        <button type="submit" class="btn-save">Guardar Cambios</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!-- templates/crear_proyecto.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Proyecto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f0ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #0056b3;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .form-container button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container button:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Crear Proyecto</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Nombre del Proyecto:</label>
+            <input type="text" name="nombre" required>
+
+            <label>Descripción:</label>
+            <textarea name="descripcion" required></textarea>
+
+            <label>Fecha de Inicio:</label>
+            <input type="date" name="fecha_inicio" required>
+
+            <label>Fecha de Fin:</label>
+            <input type="date" name="fecha_fin" required>
+
+            <button type="submit">Crear Proyecto</button>
+        </form>
+    </div>
+</body>
+</html>
